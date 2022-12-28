@@ -22,11 +22,23 @@ export default function Login({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     
+    //create a form submit handler handleSubmit that will call loginUser with the username & password.
+    //call setToken with a successful result.
+    //call handleSubmit using onSubmit event handler on the <form>
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+            username,
+            password
+        });
+        setToken(token);
+    }
+
     return(
         <div className="login-wrapper">
             <h1>Please Log In</h1>
         
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
                     <input type="text" onChange={e => setUserName(e.target.value)}/>
