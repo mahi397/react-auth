@@ -1,6 +1,19 @@
 import { useState } from 'react';
-import './Login.css';
 import PropTypes from 'prop-types';
+import './Login.css';
+
+//create async func to make POST request to server. 
+//Takes credentials as arg, calls fetch method using POST option
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+     .then(data => data.json())
+}
 
 export default function Login({ setToken }) {
 
